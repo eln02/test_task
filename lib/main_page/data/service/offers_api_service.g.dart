@@ -13,7 +13,7 @@ class _OfferApiService implements OfferApiService {
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??= 'http://192.168.137.105:5000';
+    baseUrl ??= 'https://run.mocky.io/v3';
   }
 
   final Dio _dio;
@@ -34,7 +34,7 @@ class _OfferApiService implements OfferApiService {
     )
             .compose(
               _dio.options,
-              '/offers',
+              '/214a1713-bac0-4853-907c-a1dfc3cd05fd',
               queryParameters: queryParameters,
               data: _data,
             )

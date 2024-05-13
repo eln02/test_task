@@ -13,7 +13,7 @@ class _TicketApiService implements TicketApiService {
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??= 'http://192.168.137.105:5000';
+    baseUrl ??= 'https://run.mocky.io/v3';
   }
 
   final Dio _dio;
@@ -34,7 +34,7 @@ class _TicketApiService implements TicketApiService {
     )
             .compose(
               _dio.options,
-              '/tickets',
+              '/670c3d56-7f03-4237-9e34-d437a9e56ebf',
               queryParameters: queryParameters,
               data: _data,
             )
