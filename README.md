@@ -1,16 +1,61 @@
-# test_task
+# Тестовое задание
 
-test task
+- [ТЗ](https://docs.google.com/document/d/1tYGg7V9z6BGrKD_uq7M22wh2k8YggD4uc3q2NiYyr_0/edit?usp=sharing)
+- [Макет](https://www.figma.com/file/Mpk2ewCODAz5wmr95vXn38/Untitled?type=design&mode=design&t=qLDb6uv5pkFoP5zD-0.)
 
-## Getting Started
+## Стек:
+- provider
+- retrofit
+- shared_preferences
 
-This project is a starting point for a Flutter application.
+## Превью:
 
-A few resources to get you started if this is your first Flutter project:
+https://github.com/eln02/test_task/assets/99683487/f951fe1d-8b4b-4bca-813f-77d649aac1f7
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Если не работает API:
+### Вариант 1: Есть mock сервер
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+1. В файле `lib/shared/config/api_config/config.dart` обновить mock ссылки на актуальные
+   ```dart
+   const String baseUrl = 'https://run.mocky.io/v3';
+   const String offersPath = '/первый путь';
+   const String ticketsOffersPath = '/второй путь';
+   const String ticketsPath = '/третий путь';
+    ```
+   
+3. Запустить команду 
+
+   ```echo
+   flutter pub run build_runner build
+   ``` 
+
+### Вариант2: Запустить локальный mock сервер
+
+1. Запустить flask сервер
+   
+   [Репозиторий](https://github.com/eln02/mock_server.git)
+   ```echo
+   flask run --host=<свой хост> --port=<cвой порт>
+   ``` 
+   
+3. В файле `lib/shared/config/api_config/config.dart` изменить код
+
+    Вставить свой хост и порт
+ 
+   ```dart
+   const String host = '';
+   const String port = '';
+   const String baseUrl = 'http://$host:$port';
+   const String ticketsPath = '/tickets';
+   const String offersPath = '/offers';
+   const String ticketsOffersPath = '/tickets_offers';
+   ```
+
+4. Запустить команду 
+   ```echo
+   flutter pub run build_runner build
+   ```    
+   
+   
+
+
