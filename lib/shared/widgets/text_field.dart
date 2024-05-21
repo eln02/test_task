@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -8,6 +9,8 @@ class CustomTextField extends StatelessWidget {
   final VoidCallback? onTap;
   final void Function(String)? onSubmitted;
   final ValueChanged<String>? onChanged;
+  final bool autoFocus;
+  final FocusNode? focusNode;
 
   const CustomTextField({super.key,
     required this.controller,
@@ -16,11 +19,15 @@ class CustomTextField extends StatelessWidget {
     this.onTap,
     this.onSubmitted,
     this.onChanged,
+    this.autoFocus = false,
+    this.focusNode,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextField(
+      autofocus: autoFocus,
+      focusNode: focusNode,
       onChanged: onChanged,
       onSubmitted: (v) {
         onSubmitted?.call(v);

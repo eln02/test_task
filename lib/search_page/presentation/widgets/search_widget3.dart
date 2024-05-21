@@ -105,7 +105,9 @@ class _SearchWidget3State extends State<SearchWidget3> {
 
   Widget _cross(BuildContext context){
     return InkWell(
-      onTap: () {toController.text = '';},
+      onTap: () {toController.text = '';
+      Provider.of<ToNotifier>(context, listen: false).set('');
+      },
       child: SizedBox(
         height: 30,
         width: 30,
@@ -123,6 +125,9 @@ class _SearchWidget3State extends State<SearchWidget3> {
   Widget _arrows(BuildContext context){
     return InkWell(
       onTap: () {
+        Provider.of<ToNotifier>(context, listen: false).set(fromController.text);
+        Provider.of<FromNotifier>(context, listen: false).set(toController.text);
+
         String temp = fromController.text;
         fromController.text = toController.text;
         toController.text = temp;

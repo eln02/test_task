@@ -18,17 +18,22 @@ class SearchWidget2 extends StatefulWidget {
 class _SearchWidget2State extends State<SearchWidget2> {
   late TextEditingController fromController = TextEditingController();
   late TextEditingController toController = TextEditingController();
+  final FocusNode focusNode = FocusNode();
 
   @override
   void dispose() {
     fromController.dispose();
     toController.dispose();
+    focusNode.dispose();
     super.dispose();
   }
 
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      focusNode.requestFocus();
+    });
     fromController = TextEditingController(
         text: Provider.of<FromNotifier>(context, listen: false).from);
     toController = TextEditingController(
@@ -92,6 +97,8 @@ class _SearchWidget2State extends State<SearchWidget2> {
                         child: Consumer<ToNotifier>(
                             builder: (context, toNotifier, child) {
                           return CustomTextField(
+                            autoFocus: true,
+                            focusNode: focusNode,
                             hintText: 'Куда - Турция',
                             padding: 6,
                             controller: TextEditingController(
